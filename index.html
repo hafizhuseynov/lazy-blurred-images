@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lazy Loading</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        img {
+            object-fit: cover;
+            object-position: center;
+            border-radius: 4px;
+        }
+
+        .grid {
+            padding: 12px;
+        }
+
+        @media screen and (min-width: 768px) {
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+        }
+
+        @media screen and (min-width: 1024px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media screen and (min-width: 1280px) {
+            .grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid">
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-1.jpg"
+            data-src="./images/image-1.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-2.jpg"
+            data-src="./images/image-2.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-3.jpg"
+            data-src="./images/image-3.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-4.jpg"
+            data-src="./images/image-4.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-5.jpg"
+            data-src="./images/image-5.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-6.jpg"
+            data-src="./images/image-6.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-7.jpg"
+            data-src="./images/image-7.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-8.jpg"
+            data-src="./images/image-8.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-9.jpg"
+            data-src="./images/image-9.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-10.jpg"
+            data-src="./images/image-10.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-11.jpg"
+            data-src="./images/image-11.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-12.jpg"
+            data-src="./images/image-12.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-13.jpg"
+            data-src="./images/image-13.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-14.jpg"
+            data-src="./images/image-14.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-15.jpg"
+            data-src="./images/image-15.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-16.jpg"
+            data-src="./images/image-16.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-17.jpg"
+            data-src="./images/image-17.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-18.jpg"
+            data-src="./images/image-18.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-19.jpg"
+            data-src="./images/image-19.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-20.jpg"
+            data-src="./images/image-20.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-21.jpg"
+            data-src="./images/image-21.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-22.jpg"
+            data-src="./images/image-22.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-23.jpg"
+            data-src="./images/image-23.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-24.jpg"
+            data-src="./images/image-24.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-25.jpg"
+            data-src="./images/image-25.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-26.jpg"
+            data-src="./images/image-26.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-27.jpg"
+            data-src="./images/image-27.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-28.jpg"
+            data-src="./images/image-28.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-29.jpg"
+            data-src="./images/image-29.jpg" />
+        <img loading="lazy" width="100%" height="600" src="./placeholders/image-30.jpg"
+            data-src="./images/image-30.jpg" />
+    </div>
+    <script>
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    const src = img.getAttribute('data-src');
+                    img.src = src;
+                    observer.unobserve(img)
+                }
+            })
+        }, {
+            threshold: 0.3
+        })
+
+        document.querySelectorAll("img").forEach(img => {
+            observer.observe(img)
+        })
+    </script>
+</body>
+
+</html>
