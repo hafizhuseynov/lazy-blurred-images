@@ -108,13 +108,12 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const img = entry.target;
-                    const src = img.getAttribute('data-src');
-                    img.src = src;
+                    img.src = img.dataset.src;
                     observer.unobserve(img)
                 }
             })
         }, {
-            threshold: 0.3
+            threshold: 0.2
         })
 
         document.querySelectorAll("img").forEach(img => {
